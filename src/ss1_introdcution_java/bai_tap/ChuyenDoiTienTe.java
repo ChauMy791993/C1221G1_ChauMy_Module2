@@ -10,5 +10,6 @@ public class ChuyenDoiTienTe {
         float USD = Float.parseFloat(scanner.nextLine());
         float VND = USD*23000;
         System.out.println("giá trị VND = "+VND);
+
     }
 }
