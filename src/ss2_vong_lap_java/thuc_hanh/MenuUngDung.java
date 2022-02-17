@@ -6,7 +6,7 @@ public class MenuUngDung {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Menu\n"+"1. vẽ tam giác\n"+"2. vẽ hình vuông\n"+"3. vẽ hình chữ nhật\n"+"0. thoát");
-        System.out.println("Enter your choice: ");
+        System.out.println("nhập số chọn ");
         while (true) {
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
