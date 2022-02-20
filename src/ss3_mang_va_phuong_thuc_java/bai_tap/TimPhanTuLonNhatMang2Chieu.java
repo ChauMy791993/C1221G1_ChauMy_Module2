@@ -5,18 +5,28 @@ import java.util.Scanner;
 
 public class TimPhanTuLonNhatMang2Chieu {
     public static void main(String[] args) {
-        int[][] array = new int[3][3];
+        int m, n;
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter " + array.length + " rows and " +
-                array[0].length + " columns: ");
-        for (int row = 0; row < array.length; row++) {
-            for (int column = 0; column < array[row].length; column++) {
-
-                System.out.println(array[row][column]+" ");
-                array[row][column] = scanner.nextInt();
+        System.out.println("nhập số dòng :");
+        m = Integer.parseInt(scanner.nextLine());
+        System.out.println("nhập số cột :");
+        n = Integer.parseInt(scanner.nextLine());
+        int[][] array = new int[m][n];
+        System.out.println("nhập các phần tử cho ma trận :");
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.println("A[" + i + "][" + j + "]=");
+                array[i][j] = Integer.parseInt(scanner.nextLine());
             }
         }
-        System.out.println(a);
+        int max = array[0][0];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (max<array[i][j]) {
+                    max = array[i][j];
+                }
+            }
+        }
+        System.out.println("phần tử có giá trị lớn nhất : " + max);
     }
 }
