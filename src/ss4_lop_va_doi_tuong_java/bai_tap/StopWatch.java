@@ -3,9 +3,9 @@ package ss4_lop_va_doi_tuong_java.bai_tap;
 import java.util.Date;
 
 public class StopWatch {
-    long date;
-    long startTime;
-    long endTime;
+    private long date;
+    private long startTime;
+    private long endTime;
 
     public long getStartTime() {
         return startTime;

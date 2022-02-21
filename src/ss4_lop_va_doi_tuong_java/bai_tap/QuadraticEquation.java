@@ -3,7 +3,7 @@ package ss4_lop_va_doi_tuong_java.bai_tap;
 import java.util.Scanner;
 
 public class QuadraticEquation {
-    public double a, b, c, delta;
+    private double a, b, c, delta;
 
     public QuadraticEquation(double a, double b, double c) {
         this.a = a;

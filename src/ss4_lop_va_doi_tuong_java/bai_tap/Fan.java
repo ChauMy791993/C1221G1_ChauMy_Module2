@@ -2,10 +2,10 @@ package ss4_lop_va_doi_tuong_java.bai_tap;
 
 public class Fan {
     public static final int SLOW = 1, MEDIUM = 2, FAST = 3;
-    public int speed = SLOW;
-    public boolean on = false;
-    public double radius = 5;
-    public String color = "blue";
+    private int speed = SLOW;
+    private boolean on = false;
+    private double radius = 5;
+    private String color = "blue";
     public Fan() {
     }
 
