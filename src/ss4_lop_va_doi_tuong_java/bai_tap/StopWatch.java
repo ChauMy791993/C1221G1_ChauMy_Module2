@@ -3,7 +3,6 @@ package ss4_lop_va_doi_tuong_java.bai_tap;
 import java.util.Date;
 
 public class StopWatch {
-    private long date;
     private long startTime;
     private long endTime;
 
@@ -16,7 +15,7 @@ public class StopWatch {
     }
 
     public StopWatch() {
-        this.date = new Date().getTime();
+        this.startTime = new Date().getTime();
     }
 
     public void startTime() {
@@ -24,6 +23,7 @@ public class StopWatch {
     }
 
     public void endTime() {
+
         this.endTime = new Date().getTime();
     }
 
@@ -42,8 +42,6 @@ public class StopWatch {
         System.out.println("\n"+stopWatch.getEndTime());
         System.out.println(stopWatch.getElapsedTime());
     }
-
-
 }
 
 
