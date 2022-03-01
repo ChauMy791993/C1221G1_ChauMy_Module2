@@ -1,4 +1,4 @@
-package ss7_truu_tuong_interface.thuc_hanh;
+package ss7_truu_tuong_interface.thuc_hanh.comparable;
 
 import ss6_ke_thua_da_hinh.thuc_hanh.Circle;
 
