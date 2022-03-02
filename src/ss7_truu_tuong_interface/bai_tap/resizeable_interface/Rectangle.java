@@ -1,6 +1,6 @@
 package ss7_truu_tuong_interface.bai_tap.resizeable_interface;
 
-public class Rectangle extends Shape {
+public class Rectangle extends Shape  {
     private double width = 1.0;
     private double length = 1.0;
 
@@ -57,4 +57,5 @@ public class Rectangle extends Shape {
         width = width + width * percent / 100;
         length = length + length * percent / 100;
     }
+
 }
