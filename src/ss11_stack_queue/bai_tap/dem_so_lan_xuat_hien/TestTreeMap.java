@@ -6,10 +6,8 @@ import java.util.TreeMap;
 
 public class TestTreeMap {
     public static void main(String[] args) {
-        String sentence = "This is a test string this iS a test case thiS is";
+        String sentence = "Hello every body My name is MY Every day";
         System.out.println(sentence);
-
-        // TreeMap: sắp xếp các key theo thứ tự tự nhiên hoặc dùng Comparator.
         Map<String, Integer> dictionary = new TreeMap<>();
         String[] words = sentence.toLowerCase().split(" ");
         System.out.println(Arrays.toString(words));
