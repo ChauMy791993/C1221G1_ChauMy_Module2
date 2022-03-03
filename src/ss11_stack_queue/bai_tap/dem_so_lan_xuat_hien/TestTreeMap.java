@@ -2,23 +2,26 @@ package ss11_stack_queue.bai_tap.dem_so_lan_xuat_hien;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.TreeMap;
+
 
 public class TestTreeMap {
     public static void main(String[] args) {
-        String sentence = "Hello every body My name is MY Every day";
-        System.out.println(sentence);
-        Map<String, Integer> dictionary = new TreeMap<>();
-        String[] words = sentence.toLowerCase().split(" ");
-        System.out.println(Arrays.toString(words));
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter text :");
+        String text = scanner.nextLine();
+        System.out.println(text);
+        Map<String, Integer> stringList = new TreeMap<>();
+        String[] words = text.toLowerCase().split(" ");
         for (String word : words) {
-            if (!dictionary.containsKey(word)) {
-                dictionary.put(word, 1);
+            if (!stringList.containsKey(word)) {
+                stringList.put(word, 1);
             } else {
-                dictionary.replace(word, dictionary.get(word) + 1);
+                stringList.replace(word, stringList.get(word) + 1);
             }
         }
-        System.out.println("Đếm từ trong chuỗi:\n" + dictionary);
+        System.out.println("count of string:\n" + stringList);
 
     }
 }
