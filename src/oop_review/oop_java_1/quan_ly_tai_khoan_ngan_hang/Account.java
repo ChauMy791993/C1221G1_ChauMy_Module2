@@ -66,12 +66,24 @@ public class Account {
             this.setMoney(money - (withdawMoney + withdrawalFee));
             return getMoney();
         } else {
+            System.out.println("số tiền trong tài khoản không đủ");
             return -1;
         }
     }
 
-    public double getExpire(double expire) {
+    public double getExpire() {
         this.setMoney(money + money * INTEREST);
+        return getMoney();
+    }
+
+    public double getTransferMoney(double transferMoney) {
+        if (transferMoney <= 0) {
+            System.out.println("số tiền không hợp lê");
+        } else if (transferMoney > getMoney()) {
+            System.out.println("số tền trong tài khoản không đủ");
+        } else {
+            this.setMoney(this.money - transferMoney);
+        }
         return getMoney();
     }
 }

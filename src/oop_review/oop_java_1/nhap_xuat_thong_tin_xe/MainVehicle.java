@@ -31,6 +31,8 @@ public class MainVehicle {
                     break;
                 case 3:
                     System.exit(0);
+                default:
+                    System.out.println("không hợp lệ");
             }
         } while (choice != 0);
     }
