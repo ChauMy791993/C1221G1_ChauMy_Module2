@@ -1,50 +1,50 @@
 package ss12_map_tree.bai_tap.luyen_tap_su_dung_arraylist_linkedlist;
 
 public class Product {
-    private String productId;
-    private String productName;
-    private double productPrice;
-
-    public Product(String productId, String productName, double productPrice) {
-        this.productId = productId;
-        this.productName = productName;
-        this.productPrice = productPrice;
-    }
+    protected int id;
+    protected String nameProduct;
+    protected int price;
 
     public Product() {
-
     }
 
-    public String getProductId() {
-        return productId;
+    public Product(int id, String nameProduct, int price) {
+        this.id = id;
+        this.nameProduct = nameProduct;
+        this.price = price;
     }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
+    public int getId() {
+        return id;
     }
 
-    public String getProductName() {
-        return productName;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public String getNameProduct() {
+        return nameProduct;
     }
 
-    public double getProductPrice() {
-        return productPrice;
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
     }
 
-    public void setProductPrice(double productPrice) {
-        this.productPrice = productPrice;
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Override
     public String toString() {
-        return "Product{" +
-                "productId: " + productId +
-                ", productName: " + productName +
-                ", productPrice: " + productPrice +
+        return "Product -> {" +
+                "id= " + id +
+                ", nameProduct= '" + nameProduct + '\'' +
+                ", price= " + price +
                 '}';
     }
+
 }
