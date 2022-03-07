@@ -1,6 +1,8 @@
 package candidate_management.model;
 
-public class Experience extends Person {
+import java.util.Objects;
+
+public class Experience extends Candidate {
     private int expInYear;
     private String proSkill;
 
@@ -12,7 +14,7 @@ public class Experience extends Person {
         this.proSkill = proSkill;
     }
 
-    public Experience(int id, String firstName, String lastName, String birth, String address, long phone, String email, int candidateType, int expInYear, String proSkill) {
+    public Experience(String id, String firstName, String lastName, String birth, String address, String phone, String email, int candidateType, int expInYear, String proSkill) {
         super(id, firstName, lastName, birth, address, phone, email, candidateType);
         this.expInYear = expInYear;
         this.proSkill = proSkill;
@@ -41,4 +43,13 @@ public class Experience extends Person {
                 ", proSkill='" + proSkill + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Experience that = (Experience) o;
+        return super.getId() == that.getId();
+    }
+
 }

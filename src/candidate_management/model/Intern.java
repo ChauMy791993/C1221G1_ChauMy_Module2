@@ -1,6 +1,8 @@
 package candidate_management.model;
 
-public class Intern extends Person{
+import java.util.Objects;
+
+public class Intern extends Candidate {
     private String majors;
     private int semester;
     private String universityName;
@@ -14,7 +16,7 @@ public class Intern extends Person{
         this.universityName = universityName;
     }
 
-    public Intern(int id, String firstName, String lastName, String birth, String address, long phone, String email, int candidateType, String majors, int semester, String universityName) {
+    public Intern(String id, String firstName, String lastName, String birth, String address, String phone, String email, int candidateType, String majors, int semester, String universityName) {
         super(id, firstName, lastName, birth, address, phone, email, candidateType);
         this.majors = majors;
         this.semester = semester;
@@ -52,5 +54,13 @@ public class Intern extends Person{
                 ", semester=" + semester +
                 ", universityName='" + universityName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Intern)) return false;
+        Intern that = (Intern) o;
+        return super.getId() == that.getId();
     }
 }

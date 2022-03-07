@@ -1,11 +1,13 @@
 package candidate_management.services;
 
-public interface IFunctions {
-    void creating();
+public interface IFunctions<E> {
+    void add(E object);
 
-    void updating();
+    void edit();
 
-    void deleting();
+    void remove();
 
-    void searching();
+    void display();
+
+    boolean searchByName(String name);
 }

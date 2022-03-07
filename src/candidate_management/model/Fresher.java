@@ -1,20 +1,22 @@
 package candidate_management.model;
 
-public class Fresher extends Person{
+import java.util.Objects;
+
+public class Fresher extends Candidate {
     private int graduatedTime;
-    private int rankOfGraduation;
+    private String rankOfGraduation;
     private String university;
 
     public Fresher() {
     }
 
-    public Fresher(int graduatedTime, int rankOfGraduation, String university) {
+    public Fresher(int graduatedTime, String rankOfGraduation, String university) {
         this.graduatedTime = graduatedTime;
         this.rankOfGraduation = rankOfGraduation;
         this.university = university;
     }
 
-    public Fresher(int id, String firstName, String lastName, String birth, String address, long phone, String email, int candidateType, int graduatedTime, int rankOfGraduation, String university) {
+    public Fresher(String id, String firstName, String lastName, String birth, String address, String phone, String email, int candidateType, int graduatedTime, String rankOfGraduation, String university) {
         super(id, firstName, lastName, birth, address, phone, email, candidateType);
         this.graduatedTime = graduatedTime;
         this.rankOfGraduation = rankOfGraduation;
@@ -29,11 +31,11 @@ public class Fresher extends Person{
         this.graduatedTime = graduatedTime;
     }
 
-    public int getRankOfGraduation() {
+    public String getRankOfGraduation() {
         return rankOfGraduation;
     }
 
-    public void setRankOfGraduation(int rankOfGraduation) {
+    public void setRankOfGraduation(String rankOfGraduation) {
         this.rankOfGraduation = rankOfGraduation;
     }
 
@@ -52,5 +54,13 @@ public class Fresher extends Person{
                 ", rankOfGraduation=" + rankOfGraduation +
                 ", university='" + university + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Fresher)) return false;
+        Fresher that = (Fresher) o;
+        return super.getId() == that.getId();
     }
 }

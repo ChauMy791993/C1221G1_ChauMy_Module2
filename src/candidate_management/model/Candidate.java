@@ -1,23 +1,23 @@
 package candidate_management.model;
 
-public class Person {
+public class Candidate {
     private final int EXPERIENCE = 0;
     private final int FRESHER = 1;
     private final int INTERN = 2;
-    private int id;
+    private String id;
     private String firstName;
     private String lastName;
     private String birth;
     private String address;
-    private long phone;
+    private String phone;
     private String email;
-    private int candidateType;
+    private int candidateType = FRESHER;
 
-    public Person() {
+    public Candidate() {
     }
 
-    public Person(int id, String firstName, String lastName, String birth,
-                  String address, long phone, String email, int candidateType) {
+    public Candidate(String id, String firstName, String lastName, String birth,
+                     String address, String phone, String email, int candidateType) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,11 +28,11 @@ public class Person {
         this.candidateType = candidateType;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -68,11 +68,11 @@ public class Person {
         this.address = address;
     }
 
-    public long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
