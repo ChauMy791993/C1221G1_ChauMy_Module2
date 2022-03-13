@@ -22,9 +22,41 @@ public class ReadAndWriteProductFile {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+
+                if (fileInputStream != null) {
+                    fileInputStream.close();
+                    objectInputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        objectInputStream.close();
-        fileInputStream.close();
+        return productList;
+    }
+    public static void writeProductFile(List<Product> productList) {
+        File file = new File(PRODUCT_FILE);
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream objectOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(productList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+
+                if (fileOutputStream != null) {
+                    fileOutputStream.close();
+                    objectOutputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

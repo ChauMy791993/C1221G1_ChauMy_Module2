@@ -2,6 +2,7 @@ package ss17_binary_file_serialization.bai_tap.services;
 
 import ss16_io_text_file.thuc_hanh.read_and_write.ReadAndWriteFile;
 import ss17_binary_file_serialization.bai_tap.models.Product;
+import ss17_binary_file_serialization.bai_tap.utils.ReadAndWriteProductFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class IProductServiceImpl implements IProductService {
 
     @Override
     public void read() {
-        System.out.println(ReadAndWriteProductFile.readProductFile);
+        System.out.println(ReadAndWriteProductFile.readProductFile());
     }
 
     @Override
