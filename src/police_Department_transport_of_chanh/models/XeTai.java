@@ -22,7 +22,10 @@ public class XeTai extends PhuongTien {
     @Override
     public String toString() {
         return "XeTai{" + super.toString() +
-                "trongTai=" + trongTai +
+                ", trongTai=" + trongTai +
                 '}';
+    }
+    public String getInfoToCSV() {
+        return super.getInfoToCSV() + "," + trongTai ;
     }
 }

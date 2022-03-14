@@ -3,6 +3,7 @@ package police_Department_transport_of_chanh.controllers;
 import police_Department_transport_of_chanh.models.OTo;
 import police_Department_transport_of_chanh.services.OToServiceImpl;
 import police_Department_transport_of_chanh.utils.NotFoundVehicelException;
+import police_Department_transport_of_chanh.utils.ReadAndWriteToCSV;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -14,8 +15,13 @@ public class OToController {
     private String chuSoHuu;
     private int soChoNgoi;
     private String kieuXe;
+    private static final String OTO_FILE = "src/police_Department_transport_of_chanh/data/oto.csv";
     Scanner scanner = new Scanner(System.in);
     private static OToServiceImpl oToService = new OToServiceImpl();
+
+    static {
+        oToService.setoToList(ReadAndWriteToCSV.readOToListFromCSV(OTO_FILE));
+    }
 
     public void add() {
         System.out.println("nhập biển kiểm soát");
@@ -32,6 +38,8 @@ public class OToController {
         kieuXe = scanner.nextLine();
         OTo oTo = new OTo(bienKiemSoat, hangXe, namSanXuat, chuSoHuu, soChoNgoi, kieuXe);
         oToService.create(oTo);
+        ReadAndWriteToCSV.writeListOToToCSV(OTO_FILE, oToService.getoToList(), false);
+
     }
 
     public void display() {
@@ -48,6 +56,7 @@ public class OToController {
                 String xacNhan = scanner.nextLine();
                 if ("YES".equals(xacNhan.toUpperCase())) {
                     oToService.delete(oToService.getoToList().get(i));
+                    ReadAndWriteToCSV.writeListOToToCSV(OTO_FILE, oToService.getoToList(), false);
                     System.out.println("xóa thành công");
                     break;
                 } else if ("NO".equals(xacNhan.toUpperCase())) {
@@ -59,4 +68,5 @@ public class OToController {
             }
         }
     }
+
 }

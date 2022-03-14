@@ -22,7 +22,10 @@ public class XeMay extends PhuongTien {
     @Override
     public String toString() {
         return "XeMay{" + super.toString() +
-                "congSuat='" + congSuat + '\'' +
+                ", congSuat='" + congSuat + '\'' +
                 '}';
+    }
+    public String getInfoToCSV() {
+        return super.getInfoToCSV() + "," + congSuat;
     }
 }

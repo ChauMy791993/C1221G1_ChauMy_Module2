@@ -5,6 +5,7 @@ import police_Department_transport_of_chanh.models.XeMay;
 import police_Department_transport_of_chanh.services.OToServiceImpl;
 import police_Department_transport_of_chanh.services.XeMayServiceImpl;
 import police_Department_transport_of_chanh.utils.NotFoundVehicelException;
+import police_Department_transport_of_chanh.utils.ReadAndWriteToCSV;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -15,8 +16,13 @@ public class XeMayController {
     private int namSanXuat;
     private String chuSoHuu;
     private String congSuat;
+    private static final String XEMAY_FILE = "src/police_Department_transport_of_chanh/data/xemay.csv";
     Scanner scanner = new Scanner(System.in);
-    private static final XeMayServiceImpl xeMayService = new XeMayServiceImpl();
+    private static  XeMayServiceImpl xeMayService = new XeMayServiceImpl();
+    static {
+        xeMayService.setXeMayList(ReadAndWriteToCSV.readXeMayListFromCSV(XEMAY_FILE));
+    }
+
     public void add() {
         System.out.println("nhập biển kiểm soát");
         bienKiemSoat = scanner.nextLine();
@@ -30,6 +36,7 @@ public class XeMayController {
         congSuat = scanner.nextLine();
         XeMay xeMay = new XeMay(bienKiemSoat, hangXe, namSanXuat, chuSoHuu, congSuat);
         xeMayService.create(xeMay);
+        ReadAndWriteToCSV.writeListXeMayToCSV(XEMAY_FILE,xeMayService.getXeMayList(),false);
     }
 
     public void display() {
@@ -42,14 +49,15 @@ public class XeMayController {
                 System.out.println(xeMayService.getXeMayList().get(i));
                 System.out.println("Yes or No");
                 String xacNhan = scanner.nextLine();
-                if ("YES".equals(xacNhan.toUpperCase())){
+                if ("YES".equals(xacNhan.toUpperCase())) {
                     xeMayService.delete(xeMayService.getXeMayList().get(i));
+                    ReadAndWriteToCSV.writeListXeMayToCSV(XEMAY_FILE, xeMayService.getXeMayList(), false);
                     System.out.println("xóa thành công");
                     break;
-                }else if ("NO".equals(xacNhan.toUpperCase())){
+                } else if ("NO".equals(xacNhan.toUpperCase())) {
                     break;
                 }
-            }else {
+            } else {
                 throw new NotFoundVehicelException();
             }
         }

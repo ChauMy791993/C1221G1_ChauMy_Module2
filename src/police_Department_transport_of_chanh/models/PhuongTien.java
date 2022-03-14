@@ -53,7 +53,11 @@ public abstract class PhuongTien {
         return "bienKiemSoat='" + bienKiemSoat + '\'' +
                 ", hangXe='" + hangXe + '\'' +
                 ", namSanXuat=" + namSanXuat +
-                ", chuSoHuu='" + chuSoHuu + '\'' +
-                '}';
+                ", chuSoHuu='" + chuSoHuu + '\''
+                ;
+    }
+
+    public String getInfoToCSV() {
+        return bienKiemSoat + "," + hangXe + "," + namSanXuat + "," + chuSoHuu;
     }
 }
