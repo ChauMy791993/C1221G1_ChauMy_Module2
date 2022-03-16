@@ -1,4 +1,6 @@
 package case_study_module_2.furama_resort.services;
 
-public interface ICustomerService extends IServices{
+import case_study_module_2.furama_resort.models.person.Customer;
+
+public interface ICustomerService extends IServices <Customer>{
 }

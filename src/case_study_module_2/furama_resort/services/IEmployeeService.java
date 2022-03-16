@@ -1,4 +1,6 @@
 package case_study_module_2.furama_resort.services;
 
-public interface IEmployeeService extends IServices{
+import case_study_module_2.furama_resort.models.person.Employee;
+
+public interface IEmployeeService extends IServices <Employee> {
 }

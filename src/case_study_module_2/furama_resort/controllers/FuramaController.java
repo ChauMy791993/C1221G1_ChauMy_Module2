@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class FuramaController {
     Scanner scanner = new Scanner(System.in);
     private int choice = -1;
+    EmployeeController employeeController = new EmployeeController();
+    CustomerController customerController = new CustomerController();
 
     public void displayMainMenu() {
         do {
@@ -23,6 +25,20 @@ public class FuramaController {
                             "3. Edit employee\n" +
                             "4. Return main menu\n");
                     choice = Integer.parseInt(scanner.nextLine());
+                    switch (choice) {
+                        case 1:
+                            employeeController.displayEmployee();
+                            break;
+                        case 2:
+                            employeeController.addNewEmployee();
+                            break;
+                        case 3:
+                            employeeController.editEmployee();
+                        case 4:
+                            break;
+                        default:
+                            System.out.println("wrong number");
+                    }
                     break;
                 case 2:
                     System.out.println("1. Display list customers\n" +
@@ -30,6 +46,20 @@ public class FuramaController {
                             "3. Edit customer\n" +
                             "4. Return main menu\n");
                     choice = Integer.parseInt(scanner.nextLine());
+                    switch (choice) {
+                        case 1:
+                            customerController.displayCustomer();
+                            break;
+                        case 2:
+                            customerController.addNewCustomer();
+                            break;
+                        case 3:
+                            customerController.editCustomer();
+                        case 4:
+                            break;
+                        default:
+                            System.out.println("wrong number");
+                    }
                     break;
                 case 3:
                     System.out.println("1. Display list facility\n" +
