@@ -5,7 +5,7 @@ public abstract class Facility {
     private String serviceName  ;
     private int usableArea;
     private double cost;
-    private int numbeOPeople;
+    private int numberOfPeople;
     private String rentalType;
 
     public Facility() {
@@ -15,7 +15,7 @@ public abstract class Facility {
         this.serviceName = serviceName;
         this.usableArea = usableArea;
         this.cost = cost;
-        this.numbeOPeople = numbeOPeople;
+        this.numberOfPeople = numbeOPeople;
         this.rentalType = rentalType;
     }
 
@@ -43,12 +43,12 @@ public abstract class Facility {
         this.cost = cost;
     }
 
-    public int getNumbeOPeople() {
-        return numbeOPeople;
+    public int getNumberOfPeople() {
+        return numberOfPeople;
     }
 
-    public void setNumbeOPeople(int numbeOPeople) {
-        this.numbeOPeople = numbeOPeople;
+    public void setNumberOfPeople(int numberOfPeople) {
+        this.numberOfPeople = numberOfPeople;
     }
 
     public String getRentalType() {
@@ -64,7 +64,7 @@ public abstract class Facility {
         return  "serviceName='" + serviceName + '\'' +
                 ", usableArea=" + usableArea +
                 ", cost=" + cost +
-                ", numbeOPeople=" + numbeOPeople +
+                ", numberOfPeople=" + numberOfPeople +
                 ", rentalType=" + rentalType + '\''
                 ;
     }

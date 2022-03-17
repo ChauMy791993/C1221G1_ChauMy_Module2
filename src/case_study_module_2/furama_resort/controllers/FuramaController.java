@@ -7,6 +7,7 @@ public class FuramaController {
     private int choice = -1;
     EmployeeController employeeController = new EmployeeController();
     CustomerController customerController = new CustomerController();
+    FacilityController facilityController = new FacilityController();
 
     public void displayMainMenu() {
         do {
@@ -67,6 +68,27 @@ public class FuramaController {
                             "3. Display list facility maintenance\n" +
                             "4. Return main menu\n");
                     choice = Integer.parseInt(scanner.nextLine());
+                    switch (choice) {
+                        case 1:
+                            facilityController.displayFacilityList();
+                            break;
+                        case 2:
+                            System.out.println("1. Add New Villa\n" +
+                                    "2. Add New House\n" +
+                                    "3. Add New Room\n" +
+                                    "4. Back to menu\n");
+                            System.out.println("enter your choice !");
+                            choice = Integer.parseInt(scanner.nextLine());
+                            facilityController.addNewFacility(choice);
+                            break;
+                        case 3:
+                            facilityController.displayMaintenanceList();
+                            break;
+                        case 4:
+                            break;
+                        default:
+                            System.out.println("wrong number");
+                    }
                     break;
                 case 4:
                     System.out.println("1. Add new booking\n" +

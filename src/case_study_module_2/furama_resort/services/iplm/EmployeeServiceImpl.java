@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeServiceImpl implements IEmployeeService {
-    static List<Employee> employeeList = new ArrayList<>();
+    private static List<Employee> employeeList = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
     static {
