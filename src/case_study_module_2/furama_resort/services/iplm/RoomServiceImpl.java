@@ -2,20 +2,24 @@ package case_study_module_2.furama_resort.services.iplm;
 
 import case_study_module_2.furama_resort.models.facility.Room;
 import case_study_module_2.furama_resort.models.facility.Villa;
+import case_study_module_2.furama_resort.utils.RegexData;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class RoomServiceImpl extends FacilityServiceImpl {
+    private String idRoom;
     private String freeService;
+    private static final String REGEX_ID_ROOM = "^(SVRO)[-][\\d]{4}$";
     Scanner scanner = new Scanner(System.in);
     private static List<Room> roomList = new ArrayList<>();
 
+
     static {
-        Room room1 = new Room("room", 150, 1000, 2,
+        Room room1 = new Room("SVRO-2212", "room", 150, 1000, 2,
                 "day", "water");
-        Room room2 = new Room("room", 150, 1000, 2,
+        Room room2 = new Room("SVRO-2213", "room", 150, 1000, 2,
                 "day", "food");
         roomList.add(room1);
         FacilityServiceImpl.getFacilityIntegerMap().put(room1, 2);
@@ -32,19 +36,21 @@ public class RoomServiceImpl extends FacilityServiceImpl {
     }
 
     public void addNewRoom() {
+        System.out.println("you enter id room");
+        idRoom = RegexData.regexStr(scanner.nextLine(), REGEX_ID_ROOM, "wrong format ! SVRO-XXXX (X is number)");
         System.out.println("you enter service name");
-        serviceName = scanner.nextLine();
+        serviceName = RegexData.regexStr(scanner.nextLine(), REGEX_STRING, "wrong format ! Xx..x");
         System.out.println("you enter usable area");
-        usableArea = Integer.parseInt(scanner.nextLine());
+        usableArea = Double.parseDouble(RegexData.regexStr(scanner.nextLine(), REGEX_AREA, "wrong format ! area >30"));
         System.out.println("you enter cost");
-        cost = Double.parseDouble(scanner.nextLine());
+        cost = Double.parseDouble(RegexData.regexStr(scanner.nextLine(), REGEX_COST_FLOOR, "wrong format ! cost is positive"));
         System.out.println("you enter number of people");
-        numberOfPeople = Integer.parseInt(scanner.nextLine());
+        numberOfPeople = Integer.parseInt(RegexData.regexStr(scanner.nextLine(), REGEX_PEOPLE, "wrong format ! 0 < number of people < 20 "));
         System.out.println("you enter rental type");
-        rentalType = scanner.nextLine();
+        rentalType = RegexData.regexStr(scanner.nextLine(), REGEX_STRING, "wrong format ! Xx..x");
         System.out.println("you enter free service");
-        freeService = scanner.nextLine();
-        Room room = new Room(serviceName, usableArea, cost, numberOfPeople, rentalType, freeService);
+        freeService = RegexData.regexStr(scanner.nextLine(), REGEX_STRING, "wrong format ! Xx..x");
+        Room room = new Room(idRoom, serviceName, usableArea, cost, numberOfPeople, rentalType, freeService);
         roomList.add(room);
         super.create(room);
     }

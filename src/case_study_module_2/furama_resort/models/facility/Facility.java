@@ -3,7 +3,7 @@ package case_study_module_2.furama_resort.models.facility;
 //class cơ sở vật chất
 public abstract class Facility {
     private String serviceName  ;
-    private int usableArea;
+    private double usableArea;
     private double cost;
     private int numberOfPeople;
     private String rentalType;
@@ -11,7 +11,7 @@ public abstract class Facility {
     public Facility() {
     }
 
-    public Facility(String serviceName, int usableArea, double cost, int numbeOPeople, String rentalType) {
+    public Facility(String serviceName, double usableArea, double cost, int numbeOPeople, String rentalType) {
         this.serviceName = serviceName;
         this.usableArea = usableArea;
         this.cost = cost;
@@ -27,7 +27,7 @@ public abstract class Facility {
         this.serviceName = serviceName;
     }
 
-    public int getUsableArea() {
+    public double getUsableArea() {
         return usableArea;
     }
 
@@ -61,7 +61,7 @@ public abstract class Facility {
 
     @Override
     public String toString() {
-        return  "serviceName='" + serviceName + '\'' +
+        return  ", serviceName='" + serviceName + '\'' +
                 ", usableArea=" + usableArea +
                 ", cost=" + cost +
                 ", numberOfPeople=" + numberOfPeople +

@@ -1,15 +1,17 @@
 package case_study_module_2.furama_resort.models.facility;
 
 public class Villa extends Facility {
+    private String idVilla;
     private String roomStandard;
-    private int poolArea;
+    private double poolArea;
     private int numberOfFloors;
 
     public Villa() {
     }
 
-    public Villa(String serviceName, int usableArea, double cost, int numberOfPeople, String rentalType, String roomStandard, int poolArea, int numberOfFloors) {
+    public Villa(String idVilla, String serviceName, double usableArea, double cost, int numberOfPeople, String rentalType, String roomStandard, double poolArea, int numberOfFloors) {
         super(serviceName, usableArea, cost, numberOfPeople, rentalType);
+        this.idVilla = idVilla;
         this.roomStandard = roomStandard;
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
@@ -23,7 +25,7 @@ public class Villa extends Facility {
         this.roomStandard = roomStandard;
     }
 
-    public int getPoolArea() {
+    public double getPoolArea() {
         return poolArea;
     }
 
@@ -39,10 +41,20 @@ public class Villa extends Facility {
         this.numberOfFloors = numberOfFloors;
     }
 
+    public String getIdVilla() {
+        return idVilla;
+    }
+
+    public void setIdVilla(String idVilla) {
+        this.idVilla = idVilla;
+    }
+
     @Override
     public String toString() {
-        return "Villa{" +super.toString()+
-                "roomStandard='" + roomStandard + '\'' +
+        return "Villa{" +
+                "idVilla='" + idVilla + '\'' +
+                super.toString() +
+                ", roomStandard='" + roomStandard + '\'' +
                 ", poolArea=" + poolArea +
                 ", numberOfFloors=" + numberOfFloors +
                 '}';

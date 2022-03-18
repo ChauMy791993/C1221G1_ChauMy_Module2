@@ -1,13 +1,15 @@
 package case_study_module_2.furama_resort.models.facility;
 
 public class Room extends Facility {
+    private String idRoom;
     private String freeService;
 
     public Room() {
     }
 
-    public Room(String serviceName, int usableArea, double cost, int numberOfPeople, String rentalType, String freeService) {
+    public Room(String idRoom, String serviceName, double usableArea, double cost, int numberOfPeople, String rentalType, String freeService) {
         super(serviceName, usableArea, cost, numberOfPeople, rentalType);
+        this.idRoom = idRoom;
         this.freeService = freeService;
     }
 
@@ -19,9 +21,19 @@ public class Room extends Facility {
         this.freeService = freeService;
     }
 
+    public String getIdRoom() {
+        return idRoom;
+    }
+
+    public void setIdRoom(String idRoom) {
+        this.idRoom = idRoom;
+    }
+
     @Override
     public String toString() {
-        return "Room{" +super.toString()+
+        return "Room{" +
+                "idRoom='" + idRoom + '\'' +
+                super.toString() +
                 ", freeService='" + freeService + '\'' +
                 '}';
     }
