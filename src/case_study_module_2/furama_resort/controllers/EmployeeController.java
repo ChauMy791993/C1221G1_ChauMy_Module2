@@ -4,13 +4,14 @@ import case_study_module_2.furama_resort.enums.EmployeeOfDegree;
 import case_study_module_2.furama_resort.enums.EmployeeOfPosition;
 import case_study_module_2.furama_resort.models.person.Employee;
 import case_study_module_2.furama_resort.services.iplm.EmployeeServiceImpl;
+import case_study_module_2.furama_resort.utils.RegexData;
 
 import java.util.Scanner;
 
 public class EmployeeController {
     private String name;
     private String dayOfBirth;
-    private String sex;
+    private String gender;
     private long numberID;
     private String phoneNumber;
     private String email;
@@ -21,25 +22,22 @@ public class EmployeeController {
     public static EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
     Scanner scanner = new Scanner(System.in);
 
-    public void inputBaseInfo() {
-        System.out.println("you enter name");
-        name = scanner.nextLine();
-        System.out.println("you enter day of birth");
-        dayOfBirth = scanner.nextLine();
-        System.out.println("you enter sex");
-        sex = scanner.nextLine();
-        System.out.println("you enter id number");
-        numberID = Long.parseLong(scanner.nextLine());
-        System.out.println("you enter phone number");
-        phoneNumber = scanner.nextLine();
-        System.out.println("you enter email");
-        email = scanner.nextLine();
-    }
 
     public void addNewEmployee() {
-        this.inputBaseInfo();
+        System.out.println("you enter name");
+        name = RegexData.regexStr(scanner.nextLine(), employeeService.getREGEX_STRING(), "wrong format!");
+        System.out.println("you enter day of birth");
+        dayOfBirth = RegexData.regexStr(scanner.nextLine(),employeeService.getREGEX_DATEOFBIRTH(),"wrong format! dd/mm/yyyy");
+        System.out.println("you enter gender");
+        gender = RegexData.regexStr(scanner.nextLine(), employeeService.getREGEX_STRING(), "wrong format!");
+        System.out.println("you enter id number");
+        numberID = Long.parseLong(RegexData.regexStr(scanner.nextLine(), employeeService.getREGEX_STRING(), "wrong format!"));
+        System.out.println("you enter phone number");
+        phoneNumber = RegexData.regexStr(scanner.nextLine(),employeeService.getREGEX_PHONE(),"wrong format!");
+        System.out.println("you enter email");
+        email = RegexData.regexStr(scanner.nextLine(),employeeService.getREGEX_MAIL(),"wrong format!");
         System.out.println("you enter employee id");
-        employeeID = scanner.nextLine();
+        employeeID = RegexData.regexStr(scanner.nextLine(), employeeService.getREGEX_STRING(), "wrong format!");
         System.out.println("you enter degree");
         System.out.println("0.Trung_cấp,\n" +
                 "1. Cao_đẳng,\n" +
@@ -63,8 +61,8 @@ public class EmployeeController {
         }
         position = EmployeeOfPosition.values()[numberPosition];
         System.out.println("you enter salary");
-        salary = Long.parseLong(scanner.nextLine());
-        Employee employee = new Employee(name,dayOfBirth,sex,numberID,phoneNumber,email,employeeID,degree,position,salary);
+        salary = Long.parseLong(RegexData.regexStr(scanner.nextLine(), employeeService.getREGEX_STRING(), "wrong format!"));
+        Employee employee = new Employee(name, dayOfBirth, gender, numberID, phoneNumber, email, employeeID, degree, position, salary);
         employeeService.create(employee);
     }
 
@@ -80,7 +78,7 @@ public class EmployeeController {
                 int index = i;
                 System.out.println(employeeService.getEmployeeList().get(i));
                 employeeService.update(index);
-            }else {
+            } else {
                 System.out.println("not find id employee");
             }
         }

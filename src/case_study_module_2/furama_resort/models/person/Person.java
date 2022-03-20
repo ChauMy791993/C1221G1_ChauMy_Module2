@@ -3,7 +3,7 @@ package case_study_module_2.furama_resort.models.person;
 public abstract class Person {
     private String name;
     private String dayOfBirth;
-    private String sex;
+    private String gender;
     private long numberID;
     private String phoneNumber;
     private String email;
@@ -14,7 +14,7 @@ public abstract class Person {
     public Person(String name, String dayOfBirth, String sex, long idNumber, String phoneNumber, String email) {
         this.name = name;
         this.dayOfBirth = dayOfBirth;
-        this.sex = sex;
+        this.gender = sex;
         this.numberID = idNumber;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -36,12 +36,12 @@ public abstract class Person {
         this.dayOfBirth = dayOfBirth;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public long getNumberID() {
@@ -72,7 +72,7 @@ public abstract class Person {
     public String toString() {
         return  "name='" + name + '\'' +
                 ", dayOfBirth='" + dayOfBirth + '\'' +
-                ", sex='" + sex + '\'' +
+                ", sex='" + gender + '\'' +
                 ", idNumber=" + numberID +
                 ", phoneNumber=" + phoneNumber +
                 ", email='" + email + '\''

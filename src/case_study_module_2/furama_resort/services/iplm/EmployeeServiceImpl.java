@@ -4,6 +4,7 @@ import case_study_module_2.furama_resort.enums.EmployeeOfDegree;
 import case_study_module_2.furama_resort.enums.EmployeeOfPosition;
 import case_study_module_2.furama_resort.models.person.Employee;
 import case_study_module_2.furama_resort.services.IEmployeeService;
+import case_study_module_2.furama_resort.utils.RegexData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,27 @@ import java.util.Scanner;
 public class EmployeeServiceImpl implements IEmployeeService {
     private static List<Employee> employeeList = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
+    private final String REGEX_STRING = "^[\\w\\s]+$";
+    private final String REGEX_DATEOFBIRTH ="^(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/\\d\\d\\d\\d$";
+    private final String REGEX_PHONE = "^\\d{10}$";
+    private final String REGEX_MAIL = "^\\w+\\@\\w+\\.[a-z]+$";
+
+    public String getREGEX_STRING() {
+        return REGEX_STRING;
+    }
+
+    public String getREGEX_DATEOFBIRTH() {
+        return REGEX_DATEOFBIRTH;
+    }
+
+    public String getREGEX_PHONE() {
+        return REGEX_PHONE;
+    }
+
+    public String getREGEX_MAIL() {
+        return REGEX_MAIL;
+    }
+
 
     static {
         employeeList.add(new Employee("Châu Mỹ", "7/9/1993", "nam", 1222345,
@@ -45,7 +67,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
     public void update(int index) {
         System.out.println("1. name\n" +
                 "2. dayOfBirth\n" +
-                "3. sex\n" +
+                "3. gender\n" +
                 "4. idNumber\n" +
                 "5. phoneNumber\n" +
                 "6. email\n" +
@@ -58,29 +80,29 @@ public class EmployeeServiceImpl implements IEmployeeService {
         switch (choice) {
             case 1:
                 System.out.println("you enter name");
-                employeeList.get(index).setName(scanner.nextLine());
+                employeeList.get(index).setName(RegexData.regexStr(scanner.nextLine(),REGEX_STRING, "wrong format!"));
                 break;
             case 2:
                 System.out.println("you enter day of birth");
-                employeeList.get(index).setDayOfBirth(scanner.nextLine());
+                employeeList.get(index).setDayOfBirth( RegexData.regexStr(scanner.nextLine(),REGEX_DATEOFBIRTH,"wrong format! dd/mm/yyyy"));
                 break;
             case 3:
-                System.out.println("you enter sex");
-                employeeList.get(index).setSex(scanner.nextLine());
+                System.out.println("you enter gender");
+                employeeList.get(index).setGender(RegexData.regexStr(scanner.nextLine(),REGEX_STRING, "wrong format!"));
                 break;
             case 4:
                 System.out.println("you enter id number");
-                employeeList.get(index).setNumberID(Long.parseLong(scanner.nextLine()));
+                employeeList.get(index).setNumberID(Long.parseLong(RegexData.regexStr(scanner.nextLine(),REGEX_STRING, "wrong format!")));
                 break;
             case 5:
                 System.out.println("you enter phone number");
-                employeeList.get(index).setPhoneNumber(scanner.nextLine());
+                employeeList.get(index).setPhoneNumber(RegexData.regexStr(scanner.nextLine(),REGEX_PHONE,"wrong format!"));
             case 6:
                 System.out.println("you enter email");
-                employeeList.get(index).setEmail(scanner.nextLine());
+                employeeList.get(index).setEmail(RegexData.regexStr(scanner.nextLine(),REGEX_MAIL,"wrong format!"));
             case 7:
                 System.out.println("you enter employee id");
-                employeeList.get(index).setEmployeeID(scanner.nextLine());
+                employeeList.get(index).setEmployeeID(RegexData.regexStr(scanner.nextLine(), REGEX_STRING, "wrong format!"));
             case 8:
                 System.out.println("you enter degree");
                 System.out.println("0.Trung_cấp,\n" +
@@ -109,7 +131,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
                 break;
             case 10:
                 System.out.println("you enter salary");
-                employeeList.get(index).setSalary(Long.parseLong(scanner.nextLine()));
+                employeeList.get(index).setSalary(Long.parseLong(RegexData.regexStr(scanner.nextLine(), REGEX_STRING, "wrong format!")));
                 break;
             default:
                 System.out.println("wrong choice");

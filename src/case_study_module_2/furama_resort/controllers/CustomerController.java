@@ -1,15 +1,17 @@
 package case_study_module_2.furama_resort.controllers;
 
 import case_study_module_2.furama_resort.enums.CustomerType;
-import case_study_module_2.furama_resort.enums.EmployeeOfDegree;
+import case_study_module_2.furama_resort.models.person.Customer;
+import case_study_module_2.furama_resort.models.person.Employee;
 import case_study_module_2.furama_resort.services.iplm.CustomerServiceImpl;
+import case_study_module_2.furama_resort.utils.RegexData;
 
 import java.util.Scanner;
 
 public class CustomerController {
     private String name;
     private String dayOfBirth;
-    private String sex;
+    private String gender;
     private long numberID;
     private String phoneNumber;
     private String email;
@@ -19,25 +21,21 @@ public class CustomerController {
     public static CustomerServiceImpl customerService = new CustomerServiceImpl();
     Scanner scanner = new Scanner(System.in);
 
-    public void inputBaseInfo() {
-        System.out.println("you enter name");
-        name = scanner.nextLine();
-        System.out.println("you enter day of birth");
-        dayOfBirth = scanner.nextLine();
-        System.out.println("you enter sex");
-        sex = scanner.nextLine();
-        System.out.println("you enter id number");
-        numberID = Long.parseLong(scanner.nextLine());
-        System.out.println("you enter phone number");
-        phoneNumber = scanner.nextLine();
-        System.out.println("you enter email");
-        email = scanner.nextLine();
-    }
-
     public void addNewCustomer() {
-        this.inputBaseInfo();
+        System.out.println("you enter name");
+        name = RegexData.regexStr(scanner.nextLine(), customerService.getREGEX_STRING(), "wrong format!");
+        System.out.println("you enter day of birth");
+        dayOfBirth = RegexData.regexStr(scanner.nextLine(),customerService.getREGEX_DATEOFBIRTH(),"wrong format! dd/mm/yyyy");
+        System.out.println("you enter gender");
+        gender = RegexData.regexStr(scanner.nextLine(), customerService.getREGEX_STRING(), "wrong format!");
+        System.out.println("you enter id number");
+        numberID = Long.parseLong(RegexData.regexStr(scanner.nextLine(), customerService.getREGEX_STRING(), "wrong format!"));
+        System.out.println("you enter phone number");
+        phoneNumber = RegexData.regexStr(scanner.nextLine(),customerService.getREGEX_PHONE(),"wrong format!");
+        System.out.println("you enter email");
+        email = RegexData.regexStr(scanner.nextLine(),customerService.getREGEX_MAIL(),"wrong format!");
         System.out.println("you enter customer id");
-        customerID = scanner.nextLine();
+        customerID = RegexData.regexStr(scanner.nextLine(), customerService.getREGEX_STRING(), "wrong format!");
         System.out.println("you enter customer type");
         System.out.println("0. Diamond,\n" +
                 "1. Platinium,\n" +
@@ -49,6 +47,10 @@ public class CustomerController {
             System.out.println(i + "-" + CustomerType.values()[i]);
         }
         customerType = CustomerType.values()[numberType];
+        System.out.print("you enter address");
+        address = RegexData.regexStr(scanner.nextLine(), customerService.getREGEX_STRING(), "wrong format!");
+        Customer customer = new Customer(name, dayOfBirth, gender, numberID, phoneNumber, email, customerID, customerType, address);
+        customerService.create(customer);
     }
     public void displayCustomer(){
         customerService.read();

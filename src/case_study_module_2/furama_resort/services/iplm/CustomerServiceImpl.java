@@ -3,6 +3,7 @@ package case_study_module_2.furama_resort.services.iplm;
 import case_study_module_2.furama_resort.enums.CustomerType;
 import case_study_module_2.furama_resort.models.person.Customer;
 import case_study_module_2.furama_resort.services.ICustomerService;
+import case_study_module_2.furama_resort.utils.RegexData;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +12,26 @@ import java.util.Scanner;
 public class CustomerServiceImpl implements ICustomerService {
     static List<Customer> customerList = new LinkedList<>();
     Scanner scanner = new Scanner(System.in);
+    private final String REGEX_STRING = "^[\\w\\s]+$";
+    private final String REGEX_DATEOFBIRTH ="^(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/\\d\\d\\d\\d$";
+    private final String REGEX_PHONE = "^\\d{10}$";
+    private final String REGEX_MAIL = "^\\w+\\@\\w+\\.[a-z]+$";
+
+    public String getREGEX_STRING() {
+        return REGEX_STRING;
+    }
+
+    public String getREGEX_DATEOFBIRTH() {
+        return REGEX_DATEOFBIRTH;
+    }
+
+    public String getREGEX_PHONE() {
+        return REGEX_PHONE;
+    }
+
+    public String getREGEX_MAIL() {
+        return REGEX_MAIL;
+    }
 
     public static List<Customer> getCustomerList() {
         return customerList;
@@ -43,7 +64,7 @@ public class CustomerServiceImpl implements ICustomerService {
     public void update(int index) {
         System.out.println("1. name\n" +
                 "2. dayOfBirth\n" +
-                "3. sex\n" +
+                "3. gender\n" +
                 "4. idNumber\n" +
                 "5. phoneNumber\n" +
                 "6. email\n" +
@@ -55,29 +76,29 @@ public class CustomerServiceImpl implements ICustomerService {
         switch (choice) {
             case 1:
                 System.out.println("you enter name");
-                customerList.get(index).setName(scanner.nextLine());
+                customerList.get(index).setName(RegexData.regexStr(scanner.nextLine(), REGEX_STRING, "wrong format!"));
                 break;
             case 2:
                 System.out.println("you enter day of birth");
-                customerList.get(index).setDayOfBirth(scanner.nextLine());
+                customerList.get(index).setDayOfBirth( RegexData.regexStr(scanner.nextLine(),REGEX_DATEOFBIRTH,"wrong format! dd/mm/yyyy"));
                 break;
             case 3:
-                System.out.println("you enter sex");
-                customerList.get(index).setSex(scanner.nextLine());
+                System.out.println("you enter gender");
+                customerList.get(index).setGender(RegexData.regexStr(scanner.nextLine(),REGEX_STRING, "wrong format!"));
                 break;
             case 4:
                 System.out.println("you enter id number");
-                customerList.get(index).setNumberID(Long.parseLong(scanner.nextLine()));
+                customerList.get(index).setNumberID(Long.parseLong(RegexData.regexStr(scanner.nextLine(),REGEX_STRING, "wrong format!")));
                 break;
             case 5:
                 System.out.println("you enter phone number");
-                customerList.get(index).setPhoneNumber(scanner.nextLine());
+                customerList.get(index).setPhoneNumber(RegexData.regexStr(scanner.nextLine(),REGEX_PHONE,"wrong format!"));
             case 6:
                 System.out.println("you enter email");
-                customerList.get(index).setEmail(scanner.nextLine());
+                customerList.get(index).setEmail(RegexData.regexStr(scanner.nextLine(),REGEX_MAIL,"wrong format!"));
             case 7:
                 System.out.println("you enter customer id");
-                customerList.get(index).setCustomerID(scanner.nextLine());
+                customerList.get(index).setCustomerID(RegexData.regexStr(scanner.nextLine(), REGEX_STRING, "wrong format!"));
             case 8:
                 System.out.println("you enter customer type");
                 System.out.println("0. Diamond,\n" +
@@ -93,7 +114,7 @@ public class CustomerServiceImpl implements ICustomerService {
                 break;
             case 9:
                 System.out.println("you enter address");
-                customerList.get(index).setAddress(scanner.nextLine());
+                customerList.get(index).setAddress(RegexData.regexStr(scanner.nextLine(), REGEX_STRING, "wrong format!"));
             default:
                 System.out.println("wrong choice");
         }
