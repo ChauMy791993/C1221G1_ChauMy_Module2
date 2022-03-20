@@ -1,6 +1,7 @@
 package case_study_module_2.furama_resort.services.iplm;
 
 import case_study_module_2.furama_resort.models.facility.House;
+import case_study_module_2.furama_resort.utils.ReadAndWriteToCSV;
 import case_study_module_2.furama_resort.utils.RegexData;
 
 import java.util.ArrayList;
@@ -11,19 +12,21 @@ public class HouseServiceImpl extends FacilityServiceImpl {
     private String idHouse;
     private String roomStandard;
     private int numberOfFloors;
+    private static final String HOUSE_FILE = "src/case_study_module_2/furama_resort/data/house.csv";
     private static final String REGEX_ID_HOUSE = "^(SVHO)[-][\\d]{4}$";
     Scanner scanner = new Scanner(System.in);
     private static List<House> houseList = new ArrayList<>();
 
     static {
-        House house1 = new House("SVHO-1122","House", 250, 2000, 5,
+        House house1 = new House("SVHO-1122", "House", 250, 2000, 5,
                 "year", "deluxe", 2);
-        House house2 = new House("SVHO-1133","House", 250, 2000, 5,
+        House house2 = new House("SVHO-1133", "House", 250, 2000, 5,
                 "year", "suite", 2);
         houseList.add(house1);
-        FacilityServiceImpl.getFacilityIntegerMap().put(house1,4);
+        FacilityServiceImpl.getFacilityIntegerMap().put(house1, 4);
         houseList.add(house2);
-        FacilityServiceImpl.getFacilityIntegerMap().put(house2,5);
+        FacilityServiceImpl.getFacilityIntegerMap().put(house2, 5);
+        ReadAndWriteToCSV.readHouseListFromCSV(HOUSE_FILE);
     }
 
     public static List<House> getHouseList() {
@@ -51,8 +54,9 @@ public class HouseServiceImpl extends FacilityServiceImpl {
         roomStandard = RegexData.regexStr(scanner.nextLine(), REGEX_STRING, "wrong format ! Xx..x");
         System.out.println("you enter numer of floors");
         numberOfFloors = Integer.parseInt(RegexData.regexStr(scanner.nextLine(), REGEX_COST_FLOOR, "wrong format ! cost is positive"));
-        House house = new House(idHouse,serviceName, usableArea, cost, numberOfPeople, rentalType, roomStandard, numberOfFloors);
+        House house = new House(idHouse, serviceName, usableArea, cost, numberOfPeople, rentalType, roomStandard, numberOfFloors);
         houseList.add(house);
+        ReadAndWriteToCSV.writeListToCSV(HOUSE_FILE, houseList);
         super.create(house);
     }
 }

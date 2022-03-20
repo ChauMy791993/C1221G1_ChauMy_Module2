@@ -61,4 +61,9 @@ public class Employee extends Person{
                 ", salary=" + salary +
                 '}';
     }
+
+    @Override
+    public String getInfoToCSV() {
+        return super.getInfoToCSV()+","+employeeID+","+degree+","+position+","+salary;
+    }
 }

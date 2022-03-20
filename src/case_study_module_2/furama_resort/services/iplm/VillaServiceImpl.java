@@ -1,6 +1,7 @@
 package case_study_module_2.furama_resort.services.iplm;
 
 import case_study_module_2.furama_resort.models.facility.Villa;
+import case_study_module_2.furama_resort.utils.ReadAndWriteToCSV;
 import case_study_module_2.furama_resort.utils.RegexData;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class VillaServiceImpl extends FacilityServiceImpl {
     private String roomStandard;
     private double poolArea;
     private int numberOfFloors;
+    private static final String VILLA_FILE="src/case_study_module_2/furama_resort/data/villa.csv";
     protected static final String REGEX_ID_VILLA = "^(SVVL)[-][\\d]{4}$";
     Scanner scanner = new Scanner(System.in);
     private static List<Villa> villaList = new ArrayList<>();
@@ -25,6 +27,8 @@ public class VillaServiceImpl extends FacilityServiceImpl {
         FacilityServiceImpl.getFacilityIntegerMap().put(villa1, 0);
         villaList.add(villa2);
         FacilityServiceImpl.getFacilityIntegerMap().put(villa2, 5);
+        ReadAndWriteToCSV.writeListToCSV(VILLA_FILE,villaList);
+        ReadAndWriteToCSV.readVillaListFromCSV(VILLA_FILE);
     }
 
     public static List<Villa> getVillaList() {
@@ -37,7 +41,7 @@ public class VillaServiceImpl extends FacilityServiceImpl {
 
     public void addNewVilla() {
         System.out.println("you enter id villa");
-        idVilla = RegexData.regexStr(scanner.nextLine(), REGEX_ID_VILLA, "wrong format ! SVRO-XXXX (X is number)");
+        idVilla = RegexData.regexStr(scanner.nextLine(), REGEX_ID_VILLA, "wrong format ! SVVL-XXXX (X is number)");
         System.out.println("you enter service name");
         serviceName = RegexData.regexStr(scanner.nextLine(), REGEX_STRING, "wrong format ! Xx..x");
         System.out.println("you enter usable area");
@@ -56,6 +60,8 @@ public class VillaServiceImpl extends FacilityServiceImpl {
         numberOfFloors = Integer.parseInt(RegexData.regexStr(scanner.nextLine(), REGEX_COST_FLOOR, "wrong format ! cost is positive"));
         Villa villa = new Villa(idVilla, serviceName, usableArea, cost, numberOfPeople, rentalType, roomStandard, poolArea, numberOfFloors);
         villaList.add(villa);
+        ReadAndWriteToCSV.writeListToCSV(VILLA_FILE,villaList);
         super.create(villa);
+
     }
 }

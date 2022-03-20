@@ -48,4 +48,9 @@ public class House extends Facility {
                 ", numberOfFloors=" + numberOfFloors +
                 '}';
     }
+
+    @Override
+    public String getInfoToCSV() {
+        return idHouse + super.getInfoToCSV() + roomStandard + "," + numberOfFloors;
+    }
 }

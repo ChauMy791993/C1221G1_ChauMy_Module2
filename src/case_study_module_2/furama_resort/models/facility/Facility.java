@@ -1,8 +1,10 @@
 package case_study_module_2.furama_resort.models.facility;
 
+import case_study_module_2.furama_resort.models.ToCSV;
+
 //class cơ sở vật chất
-public abstract class Facility {
-    private String serviceName  ;
+public abstract class Facility implements ToCSV {
+    private String serviceName;
     private double usableArea;
     private double cost;
     private int numberOfPeople;
@@ -61,11 +63,16 @@ public abstract class Facility {
 
     @Override
     public String toString() {
-        return  ", serviceName='" + serviceName + '\'' +
+        return ", serviceName='" + serviceName + '\'' +
                 ", usableArea=" + usableArea +
                 ", cost=" + cost +
                 ", numberOfPeople=" + numberOfPeople +
                 ", rentalType=" + rentalType + '\''
                 ;
+    }
+
+    @Override
+    public String getInfoToCSV() {
+        return ","+serviceName + "," + usableArea + "," + cost + "," + numberOfPeople + "," + rentalType + ",";
     }
 }

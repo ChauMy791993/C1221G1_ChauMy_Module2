@@ -4,6 +4,7 @@ import case_study_module_2.furama_resort.enums.EmployeeOfDegree;
 import case_study_module_2.furama_resort.enums.EmployeeOfPosition;
 import case_study_module_2.furama_resort.models.person.Employee;
 import case_study_module_2.furama_resort.services.IEmployeeService;
+import case_study_module_2.furama_resort.utils.ReadAndWriteToCSV;
 import case_study_module_2.furama_resort.utils.RegexData;
 
 import java.util.ArrayList;
@@ -17,6 +18,11 @@ public class EmployeeServiceImpl implements IEmployeeService {
     private final String REGEX_DATEOFBIRTH ="^(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/\\d\\d\\d\\d$";
     private final String REGEX_PHONE = "^\\d{10}$";
     private final String REGEX_MAIL = "^\\w+\\@\\w+\\.[a-z]+$";
+    private static final String EMPLOYEE_FILE="src/case_study_module_2/furama_resort/data/employee.csv";
+
+    public String getEMPLOYEE_FILE() {
+        return EMPLOYEE_FILE;
+    }
 
     public String getREGEX_STRING() {
         return REGEX_STRING;
@@ -39,19 +45,22 @@ public class EmployeeServiceImpl implements IEmployeeService {
         employeeList.add(new Employee("Châu Mỹ", "7/9/1993", "nam", 1222345,
                 "0934567891", "chaumy@gmail.com", "111223",
                 EmployeeOfDegree.Đại_học, EmployeeOfPosition.Quản_lý, 20000));
+        ReadAndWriteToCSV.writeListToCSV(EMPLOYEE_FILE,employeeList);
+        ReadAndWriteToCSV.readEmployeeListFromCSV(EMPLOYEE_FILE);
     }
 
-    public List<Employee> getEmployeeList() {
+    public static List<Employee> getEmployeeList() {
         return employeeList;
     }
 
-    public void setEmployeeList(List<Employee> employeeList) {
-        this.employeeList = employeeList;
+    public static void setEmployeeList(List<Employee> employeeList) {
+        EmployeeServiceImpl.employeeList = employeeList;
     }
 
     @Override
     public void create(Employee employee) {
         employeeList.add(employee);
+        ReadAndWriteToCSV.writeListToCSV(EMPLOYEE_FILE,employeeList);
 
     }
 

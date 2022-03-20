@@ -3,6 +3,7 @@ package case_study_module_2.furama_resort.services.iplm;
 import case_study_module_2.furama_resort.enums.CustomerType;
 import case_study_module_2.furama_resort.models.person.Customer;
 import case_study_module_2.furama_resort.services.ICustomerService;
+import case_study_module_2.furama_resort.utils.ReadAndWriteToCSV;
 import case_study_module_2.furama_resort.utils.RegexData;
 
 import java.util.LinkedList;
@@ -10,12 +11,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CustomerServiceImpl implements ICustomerService {
-    static List<Customer> customerList = new LinkedList<>();
+    private static List<Customer> customerList = new LinkedList<>();
     Scanner scanner = new Scanner(System.in);
     private final String REGEX_STRING = "^[\\w\\s]+$";
     private final String REGEX_DATEOFBIRTH ="^(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/\\d\\d\\d\\d$";
     private final String REGEX_PHONE = "^\\d{10}$";
     private final String REGEX_MAIL = "^\\w+\\@\\w+\\.[a-z]+$";
+    private static final String CUSTOMER_FILE="src/case_study_module_2/furama_resort/data/customer.csv";
+
+    public String getCUSTOMER_FILE() {
+        return CUSTOMER_FILE;
+    }
 
     public String getREGEX_STRING() {
         return REGEX_STRING;
@@ -45,11 +51,14 @@ public class CustomerServiceImpl implements ICustomerService {
         customerList.add(new Customer("thành phước", "21/12/1993", "nam",
                 1547653, "0904455663", "phuoc@gmail.com",
                 "14", CustomerType.Member, "sơn trà,đà nẵng"));
+        ReadAndWriteToCSV.writeListToCSV(CUSTOMER_FILE,customerList);
+        ReadAndWriteToCSV.readCustomerListFromCSV(CUSTOMER_FILE);
     }
 
     @Override
     public void create(Customer customer) {
         customerList.add(customer);
+        ReadAndWriteToCSV.writeListToCSV(CUSTOMER_FILE,customerList);
     }
 
     @Override

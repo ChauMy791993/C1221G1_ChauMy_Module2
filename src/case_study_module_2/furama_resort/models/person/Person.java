@@ -1,6 +1,8 @@
 package case_study_module_2.furama_resort.models.person;
 
-public abstract class Person {
+import case_study_module_2.furama_resort.models.ToCSV;
+
+public abstract class Person implements ToCSV {
     private String name;
     private String dayOfBirth;
     private String gender;
@@ -72,10 +74,15 @@ public abstract class Person {
     public String toString() {
         return  "name='" + name + '\'' +
                 ", dayOfBirth='" + dayOfBirth + '\'' +
-                ", sex='" + gender + '\'' +
+                ", gender='" + gender + '\'' +
                 ", idNumber=" + numberID +
                 ", phoneNumber=" + phoneNumber +
                 ", email='" + email + '\''
                 ;
+    }
+
+    @Override
+    public String getInfoToCSV() {
+        return name+","+dayOfBirth+","+gender+","+numberID+","+phoneNumber+","+email;
     }
 }

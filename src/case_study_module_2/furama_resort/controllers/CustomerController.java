@@ -4,6 +4,7 @@ import case_study_module_2.furama_resort.enums.CustomerType;
 import case_study_module_2.furama_resort.models.person.Customer;
 import case_study_module_2.furama_resort.models.person.Employee;
 import case_study_module_2.furama_resort.services.iplm.CustomerServiceImpl;
+import case_study_module_2.furama_resort.utils.ReadAndWriteToCSV;
 import case_study_module_2.furama_resort.utils.RegexData;
 
 import java.util.Scanner;
@@ -58,11 +59,12 @@ public class CustomerController {
     public void editCustomer(){
         System.out.println("enter id customer you want fix");
         String findId = scanner.nextLine();
-        for (int i = 0; i < customerService.getCustomerList().size(); i++) {
-            if (customerService.getCustomerList().get(i).getCustomerID().equals(findId)) {
+        for (int i = 0; i < CustomerServiceImpl.getCustomerList().size(); i++) {
+            if (CustomerServiceImpl.getCustomerList().get(i).getCustomerID().equals(findId)) {
                 int index = i;
-                System.out.println(customerService.getCustomerList().get(i));
+                System.out.println(CustomerServiceImpl.getCustomerList().get(i));
                 customerService.update(index);
+                ReadAndWriteToCSV.writeListToCSV(customerService.getCUSTOMER_FILE(),CustomerServiceImpl.getCustomerList());
             }else {
                 System.out.println("not find id customer");
             }

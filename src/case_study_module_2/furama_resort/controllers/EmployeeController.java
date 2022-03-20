@@ -4,6 +4,7 @@ import case_study_module_2.furama_resort.enums.EmployeeOfDegree;
 import case_study_module_2.furama_resort.enums.EmployeeOfPosition;
 import case_study_module_2.furama_resort.models.person.Employee;
 import case_study_module_2.furama_resort.services.iplm.EmployeeServiceImpl;
+import case_study_module_2.furama_resort.utils.ReadAndWriteToCSV;
 import case_study_module_2.furama_resort.utils.RegexData;
 
 import java.util.Scanner;
@@ -64,6 +65,7 @@ public class EmployeeController {
         salary = Long.parseLong(RegexData.regexStr(scanner.nextLine(), employeeService.getREGEX_STRING(), "wrong format!"));
         Employee employee = new Employee(name, dayOfBirth, gender, numberID, phoneNumber, email, employeeID, degree, position, salary);
         employeeService.create(employee);
+
     }
 
     public void displayEmployee() {
@@ -73,11 +75,12 @@ public class EmployeeController {
     public void editEmployee() {
         System.out.println("enter id employee you want fix");
         String findId = scanner.nextLine();
-        for (int i = 0; i < employeeService.getEmployeeList().size(); i++) {
-            if (employeeService.getEmployeeList().get(i).getEmployeeID().equals(findId)) {
+        for (int i = 0; i < EmployeeServiceImpl.getEmployeeList().size(); i++) {
+            if (EmployeeServiceImpl.getEmployeeList().get(i).getEmployeeID().equals(findId)) {
                 int index = i;
-                System.out.println(employeeService.getEmployeeList().get(i));
+                System.out.println(EmployeeServiceImpl.getEmployeeList().get(i));
                 employeeService.update(index);
+                ReadAndWriteToCSV.writeListToCSV(employeeService.getEMPLOYEE_FILE(), EmployeeServiceImpl.getEmployeeList());
             } else {
                 System.out.println("not find id employee");
             }

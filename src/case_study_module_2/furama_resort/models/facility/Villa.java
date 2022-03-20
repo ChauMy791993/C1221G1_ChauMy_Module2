@@ -1,5 +1,7 @@
 package case_study_module_2.furama_resort.models.facility;
 
+import case_study_module_2.furama_resort.utils.ReadAndWriteToCSV;
+
 public class Villa extends Facility {
     private String idVilla;
     private String roomStandard;
@@ -58,5 +60,10 @@ public class Villa extends Facility {
                 ", poolArea=" + poolArea +
                 ", numberOfFloors=" + numberOfFloors +
                 '}';
+    }
+
+    @Override
+    public String getInfoToCSV() {
+        return idVilla + super.getInfoToCSV() + roomStandard + "," + poolArea + "," + numberOfFloors;
     }
 }
