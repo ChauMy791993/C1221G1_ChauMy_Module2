@@ -28,7 +28,7 @@ public class VillaServiceImpl extends FacilityServiceImpl {
         FacilityServiceImpl.getFacilityIntegerMap().put(villa1, 0);
         villaList.add(villa2);
         FacilityServiceImpl.getFacilityIntegerMap().put(villa2, 5);
-        ReadAndWriteToCSV.writeListToCSV(VILLA_FILE,villaList);
+//        ReadAndWriteToCSV.writeListToCSV(VILLA_FILE,villaList);
         ReadAndWriteToCSV.readVillaListFromCSV(VILLA_FILE);
     }
 

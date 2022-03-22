@@ -26,6 +26,7 @@ public class HouseServiceImpl extends FacilityServiceImpl {
         FacilityServiceImpl.getFacilityIntegerMap().put(house1, 4);
         houseList.add(house2);
         FacilityServiceImpl.getFacilityIntegerMap().put(house2, 5);
+//        ReadAndWriteToCSV.writeListToCSV(HOUSE_FILE,houseList);
         ReadAndWriteToCSV.readHouseListFromCSV(HOUSE_FILE);
     }
 

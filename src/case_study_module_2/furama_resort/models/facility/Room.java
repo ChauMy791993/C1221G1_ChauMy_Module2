@@ -40,6 +40,6 @@ public class Room extends Facility {
 
     @Override
     public String getInfoToCSV() {
-        return idRoom + super.getInfoToCSV() + "," + freeService;
+        return idRoom + super.getInfoToCSV() + freeService;
     }
 }

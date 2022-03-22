@@ -27,6 +27,7 @@ public class RoomServiceImpl extends FacilityServiceImpl {
         FacilityServiceImpl.getFacilityIntegerMap().put(room1, 2);
         roomList.add(room2);
         FacilityServiceImpl.getFacilityIntegerMap().put(room2, 5);
+//        ReadAndWriteToCSV.writeListToCSV(ROOM_FILE,roomList);
         ReadAndWriteToCSV.readRoomListFromCSV(ROOM_FILE);
     }
 
