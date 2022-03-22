@@ -26,15 +26,15 @@ public class CustomerController {
         System.out.println("you enter name");
         name = RegexData.regexStr(scanner.nextLine(), customerService.getREGEX_STRING(), "wrong format!");
         System.out.println("you enter day of birth");
-        dayOfBirth = RegexData.regexStr(scanner.nextLine(),customerService.getREGEX_DATEOFBIRTH(),"wrong format! dd/mm/yyyy");
+        dayOfBirth = RegexData.regexStr(scanner.nextLine(), customerService.getREGEX_DATEOFBIRTH(), "wrong format! dd/mm/yyyy");
         System.out.println("you enter gender");
         gender = RegexData.regexStr(scanner.nextLine(), customerService.getREGEX_STRING(), "wrong format!");
         System.out.println("you enter id number");
         numberID = Long.parseLong(RegexData.regexStr(scanner.nextLine(), customerService.getREGEX_STRING(), "wrong format!"));
         System.out.println("you enter phone number");
-        phoneNumber = RegexData.regexStr(scanner.nextLine(),customerService.getREGEX_PHONE(),"wrong format!");
+        phoneNumber = RegexData.regexStr(scanner.nextLine(), customerService.getREGEX_PHONE(), "wrong format!");
         System.out.println("you enter email");
-        email = RegexData.regexStr(scanner.nextLine(),customerService.getREGEX_MAIL(),"wrong format!");
+        email = RegexData.regexStr(scanner.nextLine(), customerService.getREGEX_MAIL(), "wrong format!");
         System.out.println("you enter customer id");
         customerID = RegexData.regexStr(scanner.nextLine(), customerService.getREGEX_STRING(), "wrong format!");
         System.out.println("you enter customer type");
@@ -53,21 +53,27 @@ public class CustomerController {
         Customer customer = new Customer(name, dayOfBirth, gender, numberID, phoneNumber, email, customerID, customerType, address);
         customerService.create(customer);
     }
-    public void displayCustomer(){
+
+    public void displayCustomer() {
         customerService.read();
     }
-    public void editCustomer(){
+
+    public void editCustomer() {
         System.out.println("enter id customer you want fix");
         String findId = scanner.nextLine();
+        boolean flag = false;
         for (int i = 0; i < CustomerServiceImpl.getCustomerList().size(); i++) {
             if (CustomerServiceImpl.getCustomerList().get(i).getCustomerID().equals(findId)) {
                 int index = i;
+                flag = true;
                 System.out.println(CustomerServiceImpl.getCustomerList().get(i));
                 customerService.update(index);
-                ReadAndWriteToCSV.writeListToCSV(customerService.getCUSTOMER_FILE(),CustomerServiceImpl.getCustomerList());
-            }else {
-                System.out.println("not find id customer");
+                ReadAndWriteToCSV.writeListToCSV(customerService.getCUSTOMER_FILE(), CustomerServiceImpl.getCustomerList());
+                break;
             }
+        }
+        if (!flag){
+            System.out.println("not find id customer");
         }
     }
 }

@@ -49,7 +49,7 @@ public class OToController {
     public void remove(String bienKiemSoatCanXoa) throws NotFoundVehicelException {
         boolean flag = false;
         for (int i = 0; i < oToService.getoToList().size(); i++) {
-            if (oToService.getoToList().get(i).getBienKiemSoat().equals(bienKiemSoatCanXoa.toUpperCase())) {
+            if (oToService.getoToList().get(i).getBienKiemSoat().contains(bienKiemSoatCanXoa)) {
                 flag = true;
                 System.out.println(oToService.getoToList().get(i));
                 System.out.println("Yes or No");

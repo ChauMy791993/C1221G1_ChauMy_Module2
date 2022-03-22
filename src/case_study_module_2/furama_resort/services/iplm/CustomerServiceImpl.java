@@ -14,10 +14,10 @@ public class CustomerServiceImpl implements ICustomerService {
     private static List<Customer> customerList = new LinkedList<>();
     Scanner scanner = new Scanner(System.in);
     private final String REGEX_STRING = "^[\\w\\s]+$";
-    private final String REGEX_DATEOFBIRTH ="^(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/\\d\\d\\d\\d$";
+    private final String REGEX_DATEOFBIRTH = "^(0?[1-9]|[12][0-9]|3[01])\\/(0?[1-9]|1[0-2])\\/\\d\\d\\d\\d$";
     private final String REGEX_PHONE = "^\\d{10}$";
     private final String REGEX_MAIL = "^\\w+\\@\\w+\\.[a-z]+$";
-    private static final String CUSTOMER_FILE="src/case_study_module_2/furama_resort/data/customer.csv";
+    private static final String CUSTOMER_FILE = "src/case_study_module_2/furama_resort/data/customer.csv";
 
     public String getCUSTOMER_FILE() {
         return CUSTOMER_FILE;
@@ -51,14 +51,14 @@ public class CustomerServiceImpl implements ICustomerService {
         customerList.add(new Customer("thành phước", "21/12/1993", "nam",
                 1547653, "0904455663", "phuoc@gmail.com",
                 "14", CustomerType.Member, "sơn trà,đà nẵng"));
-        ReadAndWriteToCSV.writeListToCSV(CUSTOMER_FILE,customerList);
-        ReadAndWriteToCSV.readCustomerListFromCSV(CUSTOMER_FILE);
+//        ReadAndWriteToCSV.writeListToCSV(CUSTOMER_FILE,customerList);
+        customerList = ReadAndWriteToCSV.readCustomerListFromCSV(CUSTOMER_FILE);
     }
 
     @Override
     public void create(Customer customer) {
         customerList.add(customer);
-        ReadAndWriteToCSV.writeListToCSV(CUSTOMER_FILE,customerList);
+        ReadAndWriteToCSV.writeListToCSV(CUSTOMER_FILE, customerList);
     }
 
     @Override
@@ -89,22 +89,22 @@ public class CustomerServiceImpl implements ICustomerService {
                 break;
             case 2:
                 System.out.println("you enter day of birth");
-                customerList.get(index).setDayOfBirth( RegexData.regexStr(scanner.nextLine(),REGEX_DATEOFBIRTH,"wrong format! dd/mm/yyyy"));
+                customerList.get(index).setDayOfBirth(RegexData.regexStr(scanner.nextLine(), REGEX_DATEOFBIRTH, "wrong format! dd/mm/yyyy"));
                 break;
             case 3:
                 System.out.println("you enter gender");
-                customerList.get(index).setGender(RegexData.regexStr(scanner.nextLine(),REGEX_STRING, "wrong format!"));
+                customerList.get(index).setGender(RegexData.regexStr(scanner.nextLine(), REGEX_STRING, "wrong format!"));
                 break;
             case 4:
                 System.out.println("you enter id number");
-                customerList.get(index).setNumberID(Long.parseLong(RegexData.regexStr(scanner.nextLine(),REGEX_STRING, "wrong format!")));
+                customerList.get(index).setNumberID(Long.parseLong(RegexData.regexStr(scanner.nextLine(), REGEX_STRING, "wrong format!")));
                 break;
             case 5:
                 System.out.println("you enter phone number");
-                customerList.get(index).setPhoneNumber(RegexData.regexStr(scanner.nextLine(),REGEX_PHONE,"wrong format!"));
+                customerList.get(index).setPhoneNumber(RegexData.regexStr(scanner.nextLine(), REGEX_PHONE, "wrong format!"));
             case 6:
                 System.out.println("you enter email");
-                customerList.get(index).setEmail(RegexData.regexStr(scanner.nextLine(),REGEX_MAIL,"wrong format!"));
+                customerList.get(index).setEmail(RegexData.regexStr(scanner.nextLine(), REGEX_MAIL, "wrong format!"));
             case 7:
                 System.out.println("you enter customer id");
                 customerList.get(index).setCustomerID(RegexData.regexStr(scanner.nextLine(), REGEX_STRING, "wrong format!"));

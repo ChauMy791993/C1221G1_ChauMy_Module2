@@ -28,15 +28,15 @@ public class EmployeeController {
         System.out.println("you enter name");
         name = RegexData.regexStr(scanner.nextLine(), employeeService.getREGEX_STRING(), "wrong format!");
         System.out.println("you enter day of birth");
-        dayOfBirth = RegexData.regexStr(scanner.nextLine(),employeeService.getREGEX_DATEOFBIRTH(),"wrong format! dd/mm/yyyy");
+        dayOfBirth = RegexData.regexStr(scanner.nextLine(), employeeService.getREGEX_DATEOFBIRTH(), "wrong format! dd/mm/yyyy");
         System.out.println("you enter gender");
         gender = RegexData.regexStr(scanner.nextLine(), employeeService.getREGEX_STRING(), "wrong format!");
         System.out.println("you enter id number");
         numberID = Long.parseLong(RegexData.regexStr(scanner.nextLine(), employeeService.getREGEX_STRING(), "wrong format!"));
         System.out.println("you enter phone number");
-        phoneNumber = RegexData.regexStr(scanner.nextLine(),employeeService.getREGEX_PHONE(),"wrong format!");
+        phoneNumber = RegexData.regexStr(scanner.nextLine(), employeeService.getREGEX_PHONE(), "wrong format!");
         System.out.println("you enter email");
-        email = RegexData.regexStr(scanner.nextLine(),employeeService.getREGEX_MAIL(),"wrong format!");
+        email = RegexData.regexStr(scanner.nextLine(), employeeService.getREGEX_MAIL(), "wrong format!");
         System.out.println("you enter employee id");
         employeeID = RegexData.regexStr(scanner.nextLine(), employeeService.getREGEX_STRING(), "wrong format!");
         System.out.println("you enter degree");
@@ -75,15 +75,18 @@ public class EmployeeController {
     public void editEmployee() {
         System.out.println("enter id employee you want fix");
         String findId = scanner.nextLine();
+        boolean flag = false;
         for (int i = 0; i < EmployeeServiceImpl.getEmployeeList().size(); i++) {
             if (EmployeeServiceImpl.getEmployeeList().get(i).getEmployeeID().equals(findId)) {
                 int index = i;
+                flag = true;
                 System.out.println(EmployeeServiceImpl.getEmployeeList().get(i));
                 employeeService.update(index);
                 ReadAndWriteToCSV.writeListToCSV(employeeService.getEMPLOYEE_FILE(), EmployeeServiceImpl.getEmployeeList());
-            } else {
-                System.out.println("not find id employee");
             }
+        }
+        if (!flag){
+            System.out.println("not find id employee");
         }
     }
 }
